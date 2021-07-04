@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+
+/* adding custom property */
+:root{
+    --line-border-empty:#e0e0e0;
+    --line-border-fill:#b5179e;
+}
+body{
+    font-family: 'Roboto', 'san-serif';
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    margin:0;
+    background-color: black;
+
+}
+
+.container{
+    text-align: center;
+
+}
+.progress-container{
+    display: flex;
+    flex-direction: row; 
+    /* the default direction is flex */
+    justify-content: space-between;
+    /* this arranges the text for the max width of the container by adding equal amount of space between the letter/word */
+    position: relative;
+    margin-bottom: 30px;
+    max-width: 100%;
+    width: 300px;
+}
+
+.progress-container::before{
+    content: '';
+    position: absolute;
+    background-color: var(--line-border-empty);
+    width: 100%;
+    /* the width is 100% bcz the gray line is to be present in the background */
+    top: 50%;
+    left: 0;
+    height: 4px;
+    transform: translateY(-50%);
+    z-index: -1;
+}
+
+.progress{
+    position: absolute;
+    /* the position is absolute as the progress-container position is relative. here we are changing the position of the progress bar */
+    background-color: var(--line-border-fill);
+    width: 0;
+    /* the width must be zero at starting bcz the button is not clicked yet */
+    top: 50%;
+    /*it places the progress bar to the middle */
+    left: 0;
+    height: 4px;
+    /* if height is not present, the bar is not visible */
+    transform: translateY(-50%);
+    /* it moves the bar vertically above 50% so that it is in the middle of the number */
+    z-index: -1;
+    /* it is used so that the bar starts from the number, position is bofore the number is there */
+    transition: 0.7s ease;
+}
+
+.circle{
+    background-color: rgb(224, 213, 213);
+    border-radius: 50%;
+    border: 3px solid var(--line-border-empty);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.7s ease;
+}
+
+.circle.active{
+    border-color: var(--line-border-fill);
+}
+
+.btn{
+    background-color: var(--line-border-fill);
+    color:black;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    font-family: inherit;
+    border: 0;
+    font-size: 14px;
+}
+.btn:active{
+    transform: scale(0.98);
+}
+
+.btn:disabled{
+    background-color: var(--line-border-empty);
+    cursor: not-allowed;
+}
+.btn:focus{
+    outline: 0;
+}
